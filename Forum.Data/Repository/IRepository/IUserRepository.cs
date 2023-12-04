@@ -1,4 +1,5 @@
-﻿using Forum.Models.Models;
+﻿using Forum.Models.Dto;
+using Forum.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Forum.Data.Repository.IRepository
         public Task<List<string>> CreateAsync(ForumUser user, string password, string role);
         public Task<List<string>> UpdateAsync(ForumUser user, string? password, string? role);
         public Task<List<string>> DeleteAsync(string id);
+        public Task<LoginResponseDto> LoginAsync(LoginRequestDto loginRequest);
         public Task SaveAsync();
     }
 }

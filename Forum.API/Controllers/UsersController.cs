@@ -1,8 +1,11 @@
-﻿using Forum.Data.Repository.IRepository;
+﻿using Azure;
+using Forum.Data.Repository.IRepository;
 using Forum.Models;
 using Forum.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace Forum.API.Controllers
 {
@@ -86,6 +89,17 @@ namespace Forum.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequstDTO)
+        {
+            LoginResponseDto? loginResponse = await _userRepository.LoginAsync(loginRequstDTO);
+            if (loginResponse.User == null || string.IsNullOrEmpty(loginResponse.Token))
+            {
+                return BadRequest("Username or password is invalid");
+            }
+            return Ok(loginResponse);
         }
     }
 }
