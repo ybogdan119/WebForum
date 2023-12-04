@@ -50,6 +50,9 @@ namespace Forum.Data
                 new IdentityRole() { Id = "fab4fac1-c546-41de-aebc-a14da6895711", Name = "admin", ConcurrencyStamp = "1", NormalizedName = "admin" });
 
             builder.Entity<IdentityRole>().HasData(
+                new IdentityRole() { Id = "fab4fac1-c546-41de-aebc-a14da6895713", Name = "moderator", ConcurrencyStamp = "1", NormalizedName = "moderator" });
+
+            builder.Entity<IdentityRole>().HasData(
                 new IdentityRole() { Id = "fab4fac1-c546-41de-aebc-a14da6895712", Name = "user", ConcurrencyStamp = "1", NormalizedName = "user" });
         }
 
